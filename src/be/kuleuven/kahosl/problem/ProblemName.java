@@ -25,10 +25,5 @@ package be.kuleuven.kahosl.problem;
  */
 public enum ProblemName {
 
-	MaxSAT,
-	BinPacking,
-	FlowShop,
-	PersonelScheduling,
-	TravellingSalesman,
-	VehicleRouting
+	MaxSAT, BinPacking, FlowShop, PersonelScheduling, TravellingSalesman, VehicleRouting, PDP
 }
