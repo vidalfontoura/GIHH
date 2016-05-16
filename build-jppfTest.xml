@@ -1,0 +1,40 @@
+<project name="JPPF Test" basedir="." default="run">
+	
+	<property name="src" location="${basedir}/src"/>
+	<property name="libs" location="${basedir}/lib"/>
+	<property name="config" location="${basedir}/config/config-gihhtest"/>
+	<property name="classes" location="${basedir}/classes"/>
+	
+	<path id="project.classpath">
+		<pathelement location="${classes}"/>
+		<pathelement location="${config}"/>
+		<fileset dir="${libs}">
+			<include name="**/*.jar"/>
+		</fileset>
+	</path>
+
+	
+	<target name="clean">
+		<delete dir="${classes}" quiet="true"/>
+		<mkdir dir="${classes}"/>
+	</target>
+	
+	<target name="compile" depends="clean">
+		<javac srcdir="" destdir="${classes}"
+			debug="off" deprecation="off" optimize="on" includes="**/*.java">
+	    <classpath refid="project.classpath"/>
+			<src path="${src}/"/>
+		</javac>
+  </target>
+	
+	<target name="run" depends="compile">
+		<java fork="yes" classname="be.kuleuven.kahosl.jppf.CHClient" classpathref="project.classpath">
+			<jvmarg value="-client"/>
+			<jvmarg value="-Xmx512m"/>
+			<jvmarg value="-Djppf.config=jppf-client.properties"/>
+			<jvmarg value="-Dlog4j.configuration=log4j-client.properties"/>
+		</java>       
+	</target>
+
+
+</project>
